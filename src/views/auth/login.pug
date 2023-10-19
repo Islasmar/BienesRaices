@@ -1,0 +1,26 @@
+extends ../layout/index
+
+block content 
+    div.py-10 
+    h1.text-center.text-4xl.font-extrabold.my-10.text-moonstone Real 
+        span.font-normal.text-rosa State
+    h2.text-center.text-3xl.font-extrabold.text-orangeColor= pagina
+
+    .mt-8.mx-auto.max-w-md 
+        .bg-cream.py-8.px-4.shadow.rounded-md
+            form  
+                div 
+                    label.block.text-sm.text-taupeColor.uppercase.mb-2.font-bold(for="email") Email Register
+                    input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-orangeColor.mb-2(placeholder="user@marislas.com" type="email" name="email")
+                div 
+                    label.block.text-sm.text-taupeColor.uppercase.mb-2.font-bold(for="password") Password 
+                    input#name.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-orangeColor.mb-2(placeholder="Password" type="password" name="password")
+                
+
+                div.flex.items-center.justify-between 
+                    a.text-xs.text-gray-500(href="/login/register" class="hover:underline decoration-4 decoration-rosa mt-2") Create an account 
+                    a.text-xs.text-gray-500(href="/login/recovery" class="hover:underline decoration-4 decoration-rosa mt-2") Forgot your password? Recover it 
+
+                input(class="w-full  bg-teal hover:bg-rosa text-black  hover:text-teal font-bold py-3 cursor-pointer  rounded-xl mt-4" type="submit" value="Login in")
+        
+                    
