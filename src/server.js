@@ -8,8 +8,16 @@ import generalRoutes from './routes/generalRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import db from './config/db.js';
 import User from './models/User.js';
+import Seller from './models/Seller.js';
+import helmet from 'helmet';
+import dotenv from 'dotenv';
+dotenv.config({path:"src/.env"})
 // Crear la app
 const app  = express()
+
+//Abilitar el uso de  cookies
+
+
 const port = 3000;
 try {
     //Con este comando me logeo a la base de datos
@@ -23,6 +31,8 @@ try {
 
 app.set('view engine','pug')//Le dice al Servidor que lo que se va a agtregar y a utilizar en este caso es PUG.
 app.set('views','./src/views')//Estamos definiendo en donde estarán las vistas.
+
+app.use(helmet())
 
 //Carpeta Pública.
 app.use(express.static('public'))
@@ -42,7 +52,7 @@ app.get('/', function(req, res) {
 
 
 // Iniciar el servidor y escuchar en el puerto especificado
-app.listen(port, (request,response) => {
+app.listen(port,(request,response) => {
     // Imprimir un mensaje en la consola indicando el puerto en el que está funcionando el servidor
     //Le indicamos a la instancia de express que comience a escuchar las peticiones
     console.log(`El servicio HTTP A iniciado.... \nEl servidor está funcionando en el puerto ${port}`);

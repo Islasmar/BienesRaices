@@ -1,0 +1,19 @@
+//-import from layout 
+extends ../layout/index
+
+block content 
+    div.py-10 
+    h1.text-center.text-4xl.font-extrabold.my-10.text-moonstone Real 
+        span.font-normal.text-rosa State
+    h2.text-center.text-3xl.font-extrabold.text-orangeColor= page
+    .mt-8.mx-auto.max-w-md 
+        .bg-cream.py-8.px-4.shadow.rounded-md.flex.flex-col.items-center
+            if type==="Error"
+                p(class="text-xl font-bold text-center my-10 uppercase bg-red-600 text-white w-full py-3")= type
+            else if type==="Warning"
+                p(class="text-xl font-bold text-center my-10 uppercase bg-yellow-600 text-white w-full py-3")= type
+            else if type==="Information"
+                p(class="text-xl font-bold text-center my-10 uppercase bg-green-600 text-white w-full py-3")= type
+            p(class="text-xl font-bold text-center my-10")= message
+
+            a( href="/login" class="w-full  bg-teal hover:bg-rosa text-black  hover:text-teal font-bold py-3 cursor-pointer  rounded-xl mt-4 uppercase text-center") back to login

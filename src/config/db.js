@@ -10,6 +10,7 @@ const db= new Sequelize(process.env.BD_NAME, process.env.BD_USER, process.env.BD
     port:"3309",
     dialect:"mysql",
     define:{timestamp:true},//Cuando el usuario fue creado ese usuarioo registro o en la mebnra en que se se actualizo.
+    timezone: "America/Mexico_City",//Agregar datos en la hora correspondiente.
     pool:{
         max:5,
         min:0,
