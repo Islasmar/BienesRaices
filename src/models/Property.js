@@ -15,5 +15,6 @@ const Property = db.define("tbb_properties",{
     description:{
         type:DataTypes.TEXT,
         allowNull:false
+        
     }
 })
