@@ -3,6 +3,7 @@ import User from "../models/User.js";
 import { generateID, jwtToken } from '../lib/tokens.js';
 import { emailRegister } from '../lib/emails.js';
 import dotenv from 'dotenv';
+import { request, response } from 'express';
 
 
 dotenv.config({ path: "src/.env" })
@@ -11,7 +12,8 @@ dotenv.config({ path: "src/.env" })
 
 const formLogin = (request, response) => {
   response.render("auth/login.pug", {
-    pagina: "Login",
+    showHeader: false,
+    page: 'Login',
     isLogged: true
   });
 }
@@ -288,18 +290,19 @@ const authenticateUser = async (request, response) => {
         console.log("El usuario esta verificado...")
         // Validar la contraseña asignada al correo electrónico (usuario)
         if (userExists.verifyPassword(password)) {
-          //TODO: Generar el token de accesso (JWT).
+          // Generar el token de accesso (JWT).
           const token = jwtToken(userExists.id);
           console.log(`JWT generado es: ${token}`);
 
 
-          //Pintar la página de inicio (home).
-          response.render('user/home.pug', {
-            page: "Home",
-            user: {
-              name: userExists.name
-            }
-          })
+          //Almacenar el JWT en una cookie
+          //Rendireccionar al home
+          response.cookie('_token',token,{
+            httpOnly: true,
+            //secure: true, //option to configure https protocol certified
+
+          }).redirect('/home');
+
         } else {
           response.render("auth/login.pug", {
             page: `Login`,
@@ -329,6 +332,17 @@ const authenticateUser = async (request, response) => {
 
 }
 
+const homePage = (request,response)=>{
+  response.render('user/home.pug',{
+    page:'My Properties',
+    showHeader:true,
+    user:{
+      page: "My Properties",
+      name: 'emiliano'
+    }
+  })
+}
+
 export {
   formLogin,
   formRegister,
@@ -338,5 +352,6 @@ export {
   resetPassword,
   changePassword,
   updatePassword,
-  authenticateUser
+  authenticateUser,
+  homePage
 };

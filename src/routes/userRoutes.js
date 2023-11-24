@@ -1,5 +1,5 @@
 import express from 'express'
-import { formLogin, formRegister,formRecovery, insertUser,confirmAccount,resetPassword, authenticateUser, changePassword, updatePassword }from'../controllers/userController.js';
+import { formLogin, formRegister,formRecovery, insertUser,confirmAccount,resetPassword, authenticateUser, changePassword, updatePassword, homePage }from'../controllers/userController.js';
 const router = express.Router();
 router.get("/",formLogin);
 router.get("/register",formRegister);
@@ -14,6 +14,8 @@ router.post("/recovery",resetPassword);
 router.get("/password-change/:tokenPassword",changePassword);
 router.post("/update-password/:tokenPassword",updatePassword);
 router.post("/",authenticateUser);
+
+router.get('/', homePage);
 
    
 export default router
