@@ -1,4 +1,5 @@
 import  express  from "express";
+import protectRoute from "../middlewares/protectRoutes.js";
 import{
     deleteProperty,
     findAllByUserProperty,
@@ -12,5 +13,5 @@ import{
 
  const router =express.Router();
  router.get("/create/",formProperty);
- router.post("/create",saveProperty);
+ router.post("/create",protectRoute,saveProperty);
  export default router;
