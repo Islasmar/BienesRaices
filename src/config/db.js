@@ -10,14 +10,18 @@ const db= new Sequelize(process.env.BD_NAME, process.env.BD_USER, process.env.BD
     port:"3309",
     dialect:"mysql",
     define:{timestamp:true},//Cuando el usuario fue creado ese usuarioo registro o en la mebnra en que se se actualizo.
-    timezone: "America/Mexico_City",//Agregar datos en la hora correspondiente.
+    timezone: "America/Mexico_City",
+    define: {
+        timestamps: true,       // Habilita las marcas de tiempo (timestamps) en los modelos de datos.
+      },      //Agregar datos en la hora correspondiente.
     pool:{
         max:5,
         min:0,
         //En 3 segundos va a matar la sesión.
         acquire:30000,
         //En 1 segundo va a dormir la contraseña.
-        idle:1000
+        idle:1000,
+        operatorAliases: false, // Deshabilita los alias de operadores en Sequelize.
     }
 })
 export default db;

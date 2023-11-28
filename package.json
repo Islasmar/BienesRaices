@@ -11,7 +11,9 @@
     "start-permanente": "nodemon src/index.js",
     "css": "postcss src/public/css/tailwind.css -o src/public/css/app.css --watch",
     "js": "webpack --watch",
-    "dev": "concurrently \"npm run css \"  \"npm run js\" "
+    "dev": "concurrently \"npm run css \"  \"npm run js\" ",
+    "db:importData": "node ./src/lib/seed/startSeeder.js -i",
+    "db:deleteData": "node ./src/lib/seed/startSeeder.js -d"
   },
   "keywords": [
     "MVC",

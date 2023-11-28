@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Hasta aqui funciona bien.')
     const lat = 20.617893; 
     const lng =  -97.818094;
     const map = L.map('map').setView([lat, lng ], 16);

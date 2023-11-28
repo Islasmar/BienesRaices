@@ -1,14 +1,8 @@
 import { request, response } from "express";
+import Category from '../models/category.js';
+import Price from '../models/Price.js';
 
-const formProperty = (request,response)=>{
-    console.log("Mostrando el formulario para la creación de una nueva Propiedad");
-    console.log(request.body);
-    response.render('property/create.pug',{
-        page: "New Property",
-        showHeader: true,
-        data:request.body
-    })
-}
+
 const insertProperty = (request, response)=>{
     return 0
 }
@@ -26,6 +20,19 @@ const findAllByUserProperty = (request, response)=>{
 }
 const finOneProperty = (request, response)=>{
     return 0
+}
+const formProperty = async (request,response)=>{
+    console.log("Mostrando el formulario para la creación de una nueva Propiedad");
+    console.log(request.body);
+
+    const [categories,prices]= await Promise.all([Category.findAll(),Price.findAll()])
+    response.render("property/create",{ 
+        page: "New Property",
+        showHeader: true,
+        data: request.body,
+        categories,
+        prices
+    })
 }
 const saveProperty = async(request,response)=>{
     console.log('Validar y guardar datos en la Bd de datos');
