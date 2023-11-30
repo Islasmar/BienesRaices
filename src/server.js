@@ -7,7 +7,7 @@ import express from 'express';
 import generalRoutes from './routes/generalRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import db from './config/db.js';
-import User from './models/User.js';
+import {User,Category, Price, Property} from './models/relationShips.js'
 import Seller from './models/Seller.js';
 import dotenv from 'dotenv';
 import helmet from 'helmet';

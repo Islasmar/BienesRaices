@@ -35,6 +35,7 @@ const formProperty = async (request,response)=>{
     })
 }
 const saveProperty = async(request,response)=>{
+    //TODO: Realizar las validaciones del campo antes de intentar guardar.
     console.log('Validar y guardar datos en la Bd de datos');
     response.json({msg: 'La propiedad a sido guardada'})
 }

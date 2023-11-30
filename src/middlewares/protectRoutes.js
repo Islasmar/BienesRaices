@@ -1,13 +1,23 @@
+import dotenv from 'dotenv';
+dotenv.config({path:"src/.env"})
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js'
+
 const protectRoute = async(request,response)=>{
     console.log('Hola desde middleware')
-    //TODO: Verificar si hay un token.
+    //Verificar si hay un token.
     const {_token}=request.cookies
     if(!_token){
         return response.redirect('/login')
     }
     //TODO: verificar el token.
     try{
-
+        const decodedJWT = jwt.veryfy(_token, process.env.JWT_HASH_STRING)
+        crossOriginIsolated.log(decodedJWT)
+        const loggedUser = await User.finByPk(decodedJWT.userId)
+        if(!loggedUser){
+            return response.clearCookie('_token').redirect("/login")
+        }
     }catch(error){
         return response.clearCookie('_token').redirect("/login")
     }
