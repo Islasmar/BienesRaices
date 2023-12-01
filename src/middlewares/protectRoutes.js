@@ -12,11 +12,13 @@ const protectRoute = async(request,response)=>{
     }
     //TODO: verificar el token.
     try{
-        const decodedJWT = jwt.veryfy(_token, process.env.JWT_HASH_STRING)
+        const decodedJWT = jwt.verify(_token, process.env.JWT_HASH_STRING)
         crossOriginIsolated.log(decodedJWT)
-        const loggedUser = await User.finByPk(decodedJWT.userId)
+        const loggedUser = await User.findByPk(decodedJWT.userId)
         if(!loggedUser){
             return response.clearCookie('_token').redirect("/login")
+        }else{
+            request.User = loggedUser
         }
     }catch(error){
         return response.clearCookie('_token').redirect("/login")

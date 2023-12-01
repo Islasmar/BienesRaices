@@ -46,7 +46,8 @@ const Property = db.define("tbb_properties", {
     },
     image:{
         type:DataTypes.STRING,
-        allowNull:true
+        allowNull: false,
+        defaultValue: 'por definir'
     },
     published:{
         type:DataTypes.BOOLEAN,
