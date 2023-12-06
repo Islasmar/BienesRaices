@@ -72,6 +72,7 @@ const saveProperty = async (request, response) => {
 
 const formAddImage = async (request, response) => {
     const { id } = request.params
+    console.log(`Params: ${request.params.id}`)
     const searchedProperty = await Property.findByPk(id)//Selec * From tbb_propiedades where ID = id
     if (!searchedProperty) {
         console.log('La propiedad buscada no existe')
@@ -96,7 +97,7 @@ const formAddImage = async (request, response) => {
         const loadImage = async (request, response) => {
             const { id } = request.params
 
-            //TODO: Validar que la propiedad exista.
+            //Validar que la propiedad exista.
             const searchedProperty = await Property.findByPk(id)//Selec * From tbb_propiedades where ID = id
 
             if (!searchedProperty) {

@@ -26,7 +26,7 @@ eval("(function webpackUniversalModuleDefinition(root, factory) {\n\tif(true)\n\
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\ndropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone.option.imageBox={\r\n    dictDefaultMessage:\"Please load the images about property\",\r\n    acceptedFiles:\".png, .jpeg, .bmp, .svg\",\r\n    maxFileSize: 5,\r\n    maxFiles: 1,\r\n    paralleUploads: 1,\r\n    autoProccessQueue: false\r\n}\n\n//# sourceURL=webpack://mx.edu.utxj.ti.dsm.awos.bienesraices-220192/./src/lib/customDropzone.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\ndropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone.options.imageBox={\r\n    dictDefaultMessage:\"Please load the images about property\",\r\n    acceptedFiles:\".png, .jpeg, .bmp, .svg\",\r\n    maxFileSize: 5,\r\n    maxFiles: 1,\r\n    paralleUploads: 1,\r\n    autoProccessQueue: false,\r\n    addRemoveLinks: true,\r\n    dictRemoveFile: 'Delete Image.',\r\n    dictMaxFilesExceeded: 'Just one image per property',\r\n\r\n}\n\n//# sourceURL=webpack://mx.edu.utxj.ti.dsm.awos.bienesraices-220192/./src/lib/customDropzone.js?");
 
 /***/ })
 
