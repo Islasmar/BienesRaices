@@ -38,8 +38,8 @@ const formProperty = async (request, response) => {
     })
 }
 const saveProperty = async (request, response) => {
-    //TODO: Realizar las validaciones del campo antes de intentar guardar.
-    //TODO: Implementar el auto rellenado en el formulario.
+    // Realizar las validaciones del campo antes de intentar guardar.
+    // Implementar el auto rellenado en el formulario.
     console.log('Validar y guardar datos en la Bd de datos');
 
     const { title, description, nRooms, nParkinlots, nWC, priceRange, category, street, lat, lng } = request.body
@@ -76,16 +76,16 @@ const formAddImage = async (request, response) => {
     const searchedProperty = await Property.findByPk(id)//Selec * From tbb_propiedades where ID = id
     if (!searchedProperty) {
         console.log('La propiedad buscada no existe')
-        response.redirect('login/home')
+        response.redirect('/home')
     } else {
         console.log('La propiedad si existe')
-        //TODO: Validar que quien esta conectado sea el dueño de la propiedad.
+        // Validar que quien esta conectado sea el dueño de la propiedad.
         if (searchedProperty.published) {
             console.log('La propiedad ha sido publicad y las fotos y las fotos no pueden ser modificadas')
-            response.render('login/home')
+            response.render('/home')
         } else {
             response.render('property/addImage', {
-                page: 'Add Image to Proprety',
+                page: `Add image to property: ${searchedProperty.title}`,
                 propertyID:searchedProperty.id
             })
 
@@ -94,7 +94,7 @@ const formAddImage = async (request, response) => {
 }           
 
 
-        const loadImage = async (request, response) => {
+        const loadImage = async (request, response,next) => {
             const { id } = request.params
 
             //Validar que la propiedad exista.
@@ -102,16 +102,35 @@ const formAddImage = async (request, response) => {
 
             if (!searchedProperty) {
                 console.log('La propiedad buscada no existe')
-                response.redirect('login/home')
-            } else {
-                console.log('La propiedad si existe')
-                //TODO: Validar que quien esta conectado sea el dueño de la propiedad.
-                if (searchedProperty.published){
-                    console.log('La propiedad ha sido publicad y las fotos y las fotos no pueden ser modificadas')
-                response.render('login/home')
+                response.redirect('/home')
+            }else{
+                console.log("La propiedad buscada si exite")
+                //Validar que la propiedad no esté publicada
+                if(searchedProperty.published){
+                    console.log("La propiedad ha sido publicada y las fotos no pueden ser modificadas")
+                    res.redirect('/home')
                 }
             }
-            //TODO: validar que la propiedad este validada.
+            const propertyFk = searchedProperty.user_ID
+        
+            if(loggedUser.toString() !== propertyFk.toString()){
+                console.log("La propiedad no es del usuario")
+                res.redirect('/home')
+            }
+            console.log("La propiedad si es del usuario")
+            
+            try {
+                console.log(request.file)
+                //Almacenar la imagen y publicar la propiedad
+                searchedProperty.image = request.file.filename
+                searchedProperty.published = 1
+                
+                await searchedProperty.save()
+               next()
+        
+            } catch (error) {
+                console.log(error)
+            }
         }
 
 

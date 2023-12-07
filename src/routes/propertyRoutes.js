@@ -10,12 +10,13 @@ import{
     formProperty,
     saveProperty,
     formAddImage,
-    loadImage
+    loadImage,
 }from "../controllers/propertyController.js";
+import upload from "../middlewares/uploadImage.js";
 
  const router =express.Router();
  router.get("/create/",protectRoute,formProperty);
  router.post("/create",protectRoute,saveProperty);
  router.get('/create/addImage/:id',protectRoute,formAddImage)
- router.post('/create/addImage/:id',protectRoute,loadImage)
+ router.post('/create/addImage/:id',protectRoute, upload.single('imageBox'), loadImage)
  export default router;

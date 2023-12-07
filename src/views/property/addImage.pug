@@ -6,8 +6,8 @@ block  content
         h1(class="text-4xl my-10 font-extrabold text-center text-teal ") Real
             span(class="font-medium text-rosa") Estate
         h2(class="text-center text-2xl font-extrabold mb-10")=page
-        div.bg-white.shadow-xl.py-8.px-4.rounder.mx-auto.mx-w-4xl.my-10(class="md:px-10")
-            form( id="imageBox" action=`/property/create/loadImage/${propertyID}` class="dropzone space-y-8 border-dashed border-2 w-full min:h-96 h-auto rounderd flex-col justify-center items-center" method="POST")     
-            input(class="mt-5 w-full py-3  bg-indigo-400 hover:bg-red-700 hover:scale-105 hover:text-white rounder uppercase font-bold cursor-pointer " value="Publish Property")
+    div.bg-white.shadow-xl.py-8.px-4.rounder.mx-auto.mx-w-4xl.my-10(class="md:px-10")
+            form(id="imageBox" method="POST" action=`/property/create/loadImage/${propertyID}` class="dropzone space-y-8 border-dashed border-2 w-full min:h-96 h-auto rounderd flex-col justify-center items-center")     
+            button(id="postImage" class="mt-5 w-full py-3  bg-indigo-400 hover:bg-red-700 hover:scale-105 hover:text-white text-center rounder uppercase font-bold cursor-pointer " type="button") Publish property
 block scripts
     script(src="/js/imageBox.js")
